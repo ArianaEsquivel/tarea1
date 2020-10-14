@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 Route::get('posts', 'PostsController@index');
 Route::post('posts', 'PostsController@store');
+Route::delete("posts/{id}", "PostsController@destroy")-> where("id", "[0-9]+");
 

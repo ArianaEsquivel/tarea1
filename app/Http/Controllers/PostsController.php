@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -70,7 +71,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, posts $posts)
     {
-        //
+        
     }
 
     /**
@@ -79,8 +80,8 @@ class PostsController extends Controller
      * @param  \App\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(posts $posts)
+    public function destroy(int $id)
     {
-        //
+        DB::table('posts')->where('id', '=', $id)->delete();
     }
 }
