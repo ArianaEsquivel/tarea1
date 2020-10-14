@@ -23,3 +23,5 @@ Route::delete("posts/{id}", "PostsController@destroy")-> where("id", "[0-9]+");
 Route::put("posts/{id}", "PostsController@update")-> where("id", "[0-9]+");
 Route::get('comentarios', 'ComentariosController@index');
 Route::post('comentarios', 'ComentariosController@store');
+Route::delete("comentarios/{id}", "ComentariosController@destroy")-> where("id", "[0-9]+");
+Route::put("comentarios/{id}", "ComentariosController@update")-> where("id", "[0-9]+");

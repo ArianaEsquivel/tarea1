@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\comentarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComentariosController extends Controller
 {
@@ -68,9 +69,11 @@ class ComentariosController extends Controller
      * @param  \App\comentarios  $comentarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, comentarios $comentarios)
+    public function update(Request $request, int $id)
     {
-        //
+        $affected = DB::table('comentarios')
+              ->where('id', $id)
+              ->update(['nombre' => $request->nombre, 'post_id' => $request->post_id]);
     }
 
     /**
@@ -79,8 +82,8 @@ class ComentariosController extends Controller
      * @param  \App\comentarios  $comentarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comentarios $comentarios)
+    public function destroy(int $id)
     {
-        //
+        DB::table('comentarios')->where('id', '=', $id)->delete();
     }
 }
