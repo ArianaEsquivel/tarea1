@@ -69,9 +69,12 @@ class PostsController extends Controller
      * @param  \App\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, posts $posts)
+    public function update(Request $request, int $id)
     {
-        
+        $affected = DB::table('posts')
+              ->where('id', $id)
+              ->update(['post' => $request->post, 'autor' => $request->autor, 
+                        'description' => $request->description]);
     }
 
     /**
