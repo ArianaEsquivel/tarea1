@@ -14,7 +14,7 @@ class ComentariosController extends Controller
      */
     public function index()
     {
-        //
+        return comentarios::all();
     }
 
     /**
@@ -35,7 +35,8 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comentarios = comentarios::create($request->all());
+        return $comentarios;
     }
 
     /**
