@@ -46,9 +46,10 @@ class PostsController extends Controller
      * @param  \App\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function show(posts $posts)
+    public function show(int $id)
     {
-        //
+        $post = posts::where('id', $id)->first();
+        return $post;
     }
 
     /**

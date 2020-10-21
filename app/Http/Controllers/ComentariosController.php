@@ -46,9 +46,10 @@ class ComentariosController extends Controller
      * @param  \App\comentarios  $comentarios
      * @return \Illuminate\Http\Response
      */
-    public function show(comentarios $comentarios)
+    public function show(int $id)
     {
-        //
+        $comentario = comentarios::where('id', $id)->first();
+        return $comentario;
     }
 
     /**
