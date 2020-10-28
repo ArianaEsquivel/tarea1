@@ -74,7 +74,7 @@ class ComentariosController extends Controller
     {
         $affected = DB::table('comentarios')
               ->where('id', $id)
-              ->update(['nombre' => $request->nombre, 'post_id' => $request->post_id]);
+              ->update(['comentario' => $request->nombre, 'post_id' => $request->post_id]);
     }
 
     /**

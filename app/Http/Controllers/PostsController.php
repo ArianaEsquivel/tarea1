@@ -75,7 +75,7 @@ class PostsController extends Controller
         $affected = DB::table('posts')
               ->where('id', $id)
               ->update(['post' => $request->post, 'autor' => $request->autor, 
-                        'description' => $request->description]);
+                        'descripcion' => $request->description]);
     }
 
     /**

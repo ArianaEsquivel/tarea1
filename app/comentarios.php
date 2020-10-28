@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class comentarios extends Model
 {
+    public function posts()
+    {
+        return $this->belongsTo('App\posts');
+    }
     protected $fillable = [
-        'nombre', 'post_id'
+        'comentario', 'post_id'
     ];
 }

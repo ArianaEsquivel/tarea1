@@ -10,7 +10,11 @@ class posts extends Model
     {
         return $this->hasMany('App\comentarios');
     }
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
     protected $fillable = [
-        'post','autor', 'description'
+        'post','user_id', 'descripcion'
     ];
 }
