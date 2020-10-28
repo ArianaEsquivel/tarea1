@@ -36,7 +36,9 @@ Route::delete("users/{id}", "UserController@destroy")-> where("id", "[0-9]+");
 Route::put("users/{id}", "UserController@update")-> where("id", "[0-9]+");
 
 
+
 Route::get('edad', 'UserController@index')-> middleware('validar.edad');
 
 
 Route::post("login", "UserController@logIn");
+Route::post("registro", "UserController@registro");

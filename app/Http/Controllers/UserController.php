@@ -114,4 +114,26 @@ class UserController extends Controller
         
     }
 
+    public function registro(Request $request )
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        
+        $user              = new User();
+        $user->name        = $request->name;
+        $user->age        = $request->age;
+        $user->sign        = $request->sign;
+        $user->email       = $request->email;
+        $user->password    = Hash::make($request->password);
+        if ($user->save())
+            return response()->json($user, 201);
+        
+        return abort(400, "Error al registrar usuario");
+        
+    }
+
+
 }
