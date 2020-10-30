@@ -16,9 +16,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::all();
+        if ($request->user()->tokenCan('user:info')) {
+            return response()->json(["perfil"=>$request->user()], 200);
+        }
+        return abort(401, "Scope inválido");
     }
 
     /**
@@ -102,8 +105,7 @@ class UserController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         
-        if (! $user || ! Hash::check($request->password, $user->password)) 
-        {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Usuario o contraseña incorrecta...'],
             ]);
@@ -112,6 +114,11 @@ class UserController extends Controller
         $token = $user->createToken($request->email, ['user:info'])->plainTextToken;
         return response()->json(["token" => $token], 201);
         
+    }
+
+    public function logOut(Request $request )
+    {
+        return response()->json(["afectados" => $request->user()->tokens()->delete()], 200);   
     }
 
     public function registro(Request $request )
@@ -133,6 +140,10 @@ class UserController extends Controller
         
         return abort(400, "Error al registrar usuario");
         
+    }
+    public function cuenta(Request $request )
+    {
+        return $request->user();
     }
 
 

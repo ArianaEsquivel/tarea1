@@ -42,3 +42,7 @@ Route::get('edad', 'UserController@index')-> middleware('validar.edad');
 
 Route::post("login", "UserController@logIn");
 Route::post("registro", "UserController@registro");
+
+//Route::middleware('auth:sanctum')->get('/cuenta', [UserController::class, 'cuenta']);
+Route::middleware('auth:sanctum')->delete('/logout', 'UserController@logOut');
+Route::middleware('auth:sanctum')->get('/cuenta', 'UserController@index');
