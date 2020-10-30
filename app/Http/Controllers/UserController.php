@@ -21,7 +21,7 @@ class UserController extends Controller
         if ($request->user()->tokenCan('user:info')) {
             return response()->json(["perfil"=>$request->user()], 200);
         }
-        return abort(401, "Scope inválido");
+        return abort(401, "Scope inválido lo siento");
     }
 
     /**
